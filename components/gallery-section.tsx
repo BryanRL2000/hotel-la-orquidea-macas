@@ -16,15 +16,19 @@ export function GallerySection() {
     { src: "/hotel_principal.jpeg", title: "Hotel Orquidea", category: "Hosteria" },
     { src: "/piscina.jpg", title: "Área de Piscina", category: "Instalaciones" },
     { src: "/area_descanso.jpg", title: "Área de descanso y bebidas", category: "Gastronomía" },
-    { src: "/servicio_transporte.jpg", title: "Servicios de transporte ", category: "Transporte" },
+    { src: "/servicio_transportes.jpg", title: "Servicios de transporte ", category: "Transporte" },
     { src: "/cocina.jpg", title: "Cocina", category: "Gastronomía" },
+    { src: "/sangay1.jpg", title: "Vista del Volcán Sangay", category: "Instalaciones" },
     { src: "/parqueadero.jpg", title: "Parqueadero Privado del hotel", category: "Parqueadero" },
     { src: "/dep1.jpg", title: "Habitación Individual", category: "Habitaciones" },
     { src: "/exterior_departamentos.jpg", title: "Exterior Departamento", category: "Departamentos" },
     { src: "/comedor.jpg", title: "Comedor de departamentos", category: "Gastronomía" },
     { src: "/vista_estadio.jpg", title: "Área del hotel ", category: "Instalaciones" },
-    { src: "/cocina_casa.jpg", title: "Cocina de la Casa", category: "Casa de alquiler" },
-    { src: "/jacuzzi.jpg", title: "Jacuzzi", category: "Departamentos" },
+    { src: "/cocina_Casa.jpg", title: "Cocina de la Casa", category: "Casa de alquiler" },
+    { src: "/jacuzzi1.jpg", title: "Jacuzzi", category: "Departamentos" },
+    { src: "/mapa_turistico.jpg", title: "Mapa turístico", category: "Instalaciones" },
+    { src: "/diversion.jpg", title: "Cancha para el deporte", category: "Departamentos" },
+    { src: "/volcan_sangay.jpg", title: "El majestuoso Volcán Sangay", category: "Instalaciones" },
   ]
 
   // Abrir modal

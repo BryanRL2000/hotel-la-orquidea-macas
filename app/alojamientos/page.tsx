@@ -28,8 +28,9 @@ export default function AlojamientosPage() {
             <div className="flex flex-wrap justify-center gap-4 text-sm text-amazonGreen-600">
               <span className="bg-white px-4 py-2 rounded-full shadow-sm">✓ Wi-Fi Gratuito</span>
               <span className="bg-white px-4 py-2 rounded-full shadow-sm">✓ Aire Acondicionado</span>
-              <span className="bg-white px-4 py-2 rounded-full shadow-sm">✓ Desayuno Incluido</span>
-              <span className="bg-white px-4 py-2 rounded-full shadow-sm">✓ Vista a la Naturaleza</span>
+              <span className="bg-white px-4 py-2 rounded-full shadow-sm">✓ Estacionamiento Gratuito</span>
+              <span className="bg-white px-4 py-2 rounded-full shadow-sm">✓ Habitaciones Familiares o con Camas Extra</span>
+              <span className="bg-white px-4 py-2 rounded-full shadow-sm">✓ Baño Privado</span>
             </div>
           </div>
         </section>

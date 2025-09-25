@@ -117,7 +117,7 @@ export const roomDetailsData = [
         "Artículos de aseo gratuitos",
       ],
      
-      view: "Esta en la Ciudad de Macas-Morona Santiago",
+      view: "Esta en la Ciudad ",
       price: "$40/noche",
     },
     images:
