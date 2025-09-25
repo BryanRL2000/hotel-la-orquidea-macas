@@ -18,7 +18,7 @@ export function GallerySection() {
     { src: "/area_descanso.jpg", title: "Área de descanso y bebidas", category: "Gastronomía" },
     { src: "/servicio_transportes.jpg", title: "Servicios de transporte ", category: "Transporte" },
     { src: "/cocina.jpg", title: "Cocina", category: "Gastronomía" },
-    { src: "/sangay1.jpg", title: "Vista del Volcán Sangay", category: "Instalaciones" },
+    { src: "/sangay_1.jpg", title: "Vista del Volcán Sangay", category: "Instalaciones" },
     { src: "/parqueadero.jpg", title: "Parqueadero Privado del hotel", category: "Parqueadero" },
     { src: "/dep1.jpg", title: "Habitación Individual", category: "Habitaciones" },
     { src: "/exterior_departamentos.jpg", title: "Exterior Departamento", category: "Departamentos" },
