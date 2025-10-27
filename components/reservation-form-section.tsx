@@ -19,7 +19,7 @@ import type { DateRange } from "react-day-picker"
 import { roomDetailsData } from "@/lib/room-data"
 
 export function ReservationFormSection() {
-  const whatsappNumber = "+593994979605" // Reemplaza con el número de WhatsApp real del hotel
+  const whatsappNumber = "+593983517007" // Reemplaza con el número de WhatsApp real del hotel
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -99,7 +99,7 @@ export function ReservationFormSection() {
                 <Phone className="h-6 w-6 text-amazonGreen-700 mt-1 shrink-0" />
                 <div>
                   <p className="font-semibold">Teléfono</p>
-                  <p className="text-muted-foreground">+593 994979605</p>
+                  <p className="text-muted-foreground">+593 983517007</p>
                   <p className="text-muted-foreground text-sm">Disponible 24/7</p>
                 </div>
               </div>
@@ -114,7 +114,7 @@ export function ReservationFormSection() {
                 <Clock className="h-6 w-6 text-amazonGreen-700 mt-1 shrink-0" />
                 <div>
                   <p className="font-semibold">Horarios</p>
-                  <p className="text-muted-foreground">Check-in: 10:00</p>
+                  <p className="text-muted-foreground">Check-in: 12:00</p>
                   <p className="text-muted-foreground">Check-out: 12:00</p>
                 </div>
               </div>

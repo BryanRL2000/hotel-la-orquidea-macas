@@ -130,7 +130,7 @@ export const roomDetailsData = [
       "/comedor.jpg", 
       
     ],
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?si=example",
+    videoUrl: "https://www.youtube.com/embed/dVpTeXEikgU?si=j_efvZ8sxyLGEY_I"
   },
   {
     slug: "departamento-2",
@@ -165,7 +165,7 @@ export const roomDetailsData = [
       "/cocina6.jpg", 
       "/sala5.jpg"
     ],
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?si=example",
+    videoUrl: "https://www.youtube.com/embed/dVpTeXEikgU?si=j_efvZ8sxyLGEY_I"
   },
   {
     slug: "casa-de-renta",
@@ -203,6 +203,6 @@ export const roomDetailsData = [
       "/casa9.jpg",
       "/baño4.jpg",
     ],
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?si=example",
+    videoUrl: "https://www.youtube.com/embed/IeTqpcsY7FM"
   },
 ]

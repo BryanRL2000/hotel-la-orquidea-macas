@@ -7,7 +7,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 export function BookingSection() {
-  const whatsappNumber = "+593994979605"
+  const whatsappNumber = "+593983517007"
   const whatsappMessage = encodeURIComponent(
     "Hola, me gustaría hacer una reserva en el Hotel La Orquídea. ¿Podrían darme más información?",
   )

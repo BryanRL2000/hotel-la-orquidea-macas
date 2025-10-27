@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -20,7 +19,7 @@ import type { DateRange } from "react-day-picker"
 import { roomDetailsData } from "@/lib/room-data"
 
 export function ReservationPageSection() {
-  const whatsappNumber = "+593994979605" // Número actualizado del hotel
+  const whatsappNumber = "+593983517007"
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -41,10 +40,8 @@ export function ReservationPageSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-
     const checkInDate = dateRange?.from ? format(dateRange.from, "dd/MM/yyyy", { locale: es }) : "No especificado"
     const checkOutDate = dateRange?.to ? format(dateRange.to, "dd/MM/yyyy", { locale: es }) : "No especificado"
-
     const selectedRoom = roomDetailsData.find((room) => room.slug === roomType)
     const roomTypeName = selectedRoom ? selectedRoom.type : "No especificado"
 
@@ -63,7 +60,19 @@ export function ReservationPageSection() {
         `¡Esperamos confirmar su reserva pronto! 🌿`,
     )
 
+    // ✅ Abre WhatsApp con el mensaje
     window.open(`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`, "_blank")
+
+    // ✅ LIMPIA TODOS LOS CAMPOS DEL FORMULARIO
+    setFormData({
+      fullName: "",
+      email: "",
+      phone: "",
+      message: "",
+    })
+    setDateRange({ from: undefined, to: undefined })
+    setGuests("1")
+    setRoomType("")
   }
 
   const availableRoomTypes = roomDetailsData.map((room) => ({
@@ -74,133 +83,133 @@ export function ReservationPageSection() {
   }))
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amazonGreen-50 to-white">
-      {/* Hero Section */}
-      <section className="py-12 md:py-20 bg-gradient-to-r from-amazonGreen-100 to-amazonGreen-50">
-        <div className="container px-4 md:px-6 text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-amazonGreen-800 mb-6">Reserva tu Estancia</h1>
-          <p className="text-lg md:text-xl text-amazonGreen-700 max-w-3xl mx-auto mb-8">
-            Completa el formulario y te contactaremos por WhatsApp para confirmar tu reserva en Hotel La Orquídea, tu
-            refugio en el corazón de la Amazonía ecuatoriana.
+    <div className="min-h-screen bg-gradient-to-b from-amazonGreen-50 via-white to-amazonGreen-50">
+      {/* Hero Section mejorado */}
+      <section className="py-16 md:py-24 bg-gradient-to-r from-amazonGreen-700 to-amazonGreen-800 text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-10 left-10 w-32 h-32 bg-amber-400 rounded-full blur-xl"></div>
+          <div className="absolute bottom-10 right-10 w-40 h-40 bg-emerald-400 rounded-full blur-xl"></div>
+        </div>
+        <div className="container px-4 md:px-6 relative z-10 text-center">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 drop-shadow-md">
+            Reserva tu Estancia en la Amazonía
+          </h1>
+          <p className="text-lg md:text-xl max-w-3xl mx-auto mb-10 opacity-90">
+            Completa el formulario y te contactaremos por WhatsApp para confirmar tu estadía en Hotel La Orquídea, tu refugio entre ríos, selva y paz.
           </p>
-          <div className="flex flex-wrap justify-center gap-4 text-sm text-amazonGreen-600">
-            <span className="bg-white px-4 py-2 rounded-full shadow-sm flex items-center gap-2">
-              <Phone className="h-4 w-4" />
-              Confirmación inmediata
-            </span>
-            <span className="bg-white px-4 py-2 rounded-full shadow-sm flex items-center gap-2">
-              <MessageCircle className="h-4 w-4" />
-              Atención personalizada
-            </span>
-            <span className="bg-white px-4 py-2 rounded-full shadow-sm flex items-center gap-2">
-              <MapPin className="h-4 w-4" />
-              Ubicación privilegiada
-            </span>
+          <div className="flex flex-wrap justify-center gap-3 md:gap-5 text-sm">
+            {[
+              { icon: Phone, text: "Confirmación inmediata" },
+              { icon: MessageCircle, text: "Atención personalizada" },
+              { icon: MapPin, text: "Ubicación privilegiada" },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="bg-white/10 backdrop-blur-sm px-4 py-2.5 rounded-full flex items-center gap-2 border border-white/20"
+              >
+                <item.icon className="h-4 w-4" />
+                <span>{item.text}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       <section className="py-12 md:py-20">
         <div className="container px-4 md:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
-            {/* Formulario de Reserva */}
-            <Card className="shadow-2xl border-0 bg-white/80 backdrop-blur-sm">
-              <CardHeader className="text-center pb-8">
-                <CardTitle className="text-3xl font-bold text-amazonGreen-800 mb-2">Formulario de Reserva</CardTitle>
-                <CardDescription className="text-lg text-amazonGreen-600">
-                  Completa tus datos y te contactaremos por WhatsApp
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-7xl mx-auto">
+            {/* Formulario con estilo premium */}
+            <Card className="shadow-xl border border-amazonGreen-100 bg-white/90 backdrop-blur-sm rounded-2xl overflow-hidden">
+              <CardHeader className="text-center pb-8 pt-8 bg-gradient-to-r from-amazonGreen-50 to-white">
+                <CardTitle className="text-3xl font-bold text-amazonGreen-800">Reserva tu Habitación</CardTitle>
+                <CardDescription className="text-amazonGreen-600 mt-2">
+                  Te responderemos en minutos vía WhatsApp
                 </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-6">
-                <form onSubmit={handleSubmit} className="space-y-6">
+              <CardContent className="p-6 md:p-8 space-y-7">
+                <form onSubmit={handleSubmit} className="space-y-7">
                   {/* Datos Personales */}
-                  <div className="space-y-4">
-                    <h3 className="text-lg font-semibold text-amazonGreen-800 flex items-center gap-2">
-                      <Users className="h-5 w-5" />
-                      Datos Personales
+                  <div className="space-y-5">
+                    <h3 className="text-xl font-semibold text-amazonGreen-800 flex items-center gap-2.5">
+                      <Users className="h-5 w-5 text-amazonGreen-600" />
+                      Tus Datos
                     </h3>
-                    <div className="grid gap-4 md:grid-cols-2">
+                    <div className="grid gap-5 md:grid-cols-2">
                       <div className="space-y-2">
                         <Label htmlFor="fullName" className="text-amazonGreen-700 font-medium">
                           Nombre Completo *
                         </Label>
                         <Input
                           id="fullName"
-                          placeholder="Tu nombre completo"
+                          placeholder="Ej. María López"
                           value={formData.fullName}
                           onChange={handleInputChange}
                           required
-                          className="border-amazonGreen-200 focus:border-amazonGreen-500 focus:ring-amazonGreen-500"
+                          className="border-amazonGreen-200 focus:ring-2 focus:ring-amazonGreen-300 focus:border-amazonGreen-500 transition"
                         />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="email" className="text-amazonGreen-700 font-medium">
-                          Email *
+                          Correo Electrónico *
                         </Label>
                         <Input
                           id="email"
                           type="email"
-                          placeholder="tu@ejemplo.com"
+                          placeholder="maria@example.com"
                           value={formData.email}
                           onChange={handleInputChange}
                           required
-                          className="border-amazonGreen-200 focus:border-amazonGreen-500 focus:ring-amazonGreen-500"
+                          className="border-amazonGreen-200 focus:ring-2 focus:ring-amazonGreen-300 focus:border-amazonGreen-500 transition"
                         />
                       </div>
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="phone" className="text-amazonGreen-700 font-medium">
-                        Teléfono *
+                        WhatsApp *
                       </Label>
                       <Input
                         id="phone"
                         type="tel"
-                        placeholder="Tu número de teléfono"
+                        placeholder="+593 99 123 4567"
                         value={formData.phone}
                         onChange={handleInputChange}
                         required
-                        className="border-amazonGreen-200 focus:border-amazonGreen-500 focus:ring-amazonGreen-500"
+                        className="border-amazonGreen-200 focus:ring-2 focus:ring-amazonGreen-300 focus:border-amazonGreen-500 transition"
                       />
                     </div>
                   </div>
 
                   {/* Detalles de la Reserva */}
-                  <div className="space-y-4">
-                    <h3 className="text-lg font-semibold text-amazonGreen-800 flex items-center gap-2">
-                      <Bed className="h-5 w-5" />
-                      Detalles de la Reserva
+                  <div className="space-y-5">
+                    <h3 className="text-xl font-semibold text-amazonGreen-800 flex items-center gap-2.5">
+                      <Bed className="h-5 w-5 text-amazonGreen-600" />
+                      Tu Estadía
                     </h3>
-                    <div className="grid gap-4 md:grid-cols-2">
+                    <div className="grid gap-5 md:grid-cols-2">
                       <div className="space-y-2">
                         <Label htmlFor="check-in" className="text-amazonGreen-700 font-medium">
-                          Fecha de Entrada *
+                          Check-in *
                         </Label>
                         <Popover>
                           <PopoverTrigger asChild>
                             <Button
-                              id="check-in"
-                              variant={"outline"}
+                              variant="outline"
                               className={cn(
-                                "w-full justify-start text-left font-normal border-amazonGreen-200 hover:border-amazonGreen-500",
+                                "w-full justify-start text-left font-normal border-amazonGreen-200 hover:bg-amazonGreen-50 transition",
                                 !dateRange?.from && "text-muted-foreground",
                               )}
                             >
-                              <CalendarIcon className="mr-2 h-4 w-4" />
-                              {dateRange?.from ? (
-                                format(dateRange.from, "dd/MM/yyyy", { locale: es })
-                              ) : (
-                                <span>Seleccionar fecha</span>
-                              )}
+                              <CalendarIcon className="mr-2 h-4 w-4 text-amazonGreen-600" />
+                              {dateRange?.from ? format(dateRange.from, "dd/MM/yyyy", { locale: es }) : "Seleccionar"}
                             </Button>
                           </PopoverTrigger>
                           <PopoverContent className="w-auto p-0" align="start">
                             <Calendar
                               initialFocus
                               mode="range"
-                              defaultMonth={dateRange?.from}
                               selected={dateRange}
                               onSelect={setDateRange}
-                              numberOfMonths={2}
+                              numberOfMonths={1}
                               locale={es}
                               disabled={(date) => date < new Date()}
                             />
@@ -209,34 +218,28 @@ export function ReservationPageSection() {
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="check-out" className="text-amazonGreen-700 font-medium">
-                          Fecha de Salida *
+                          Check-out *
                         </Label>
                         <Popover>
                           <PopoverTrigger asChild>
                             <Button
-                              id="check-out"
-                              variant={"outline"}
+                              variant="outline"
                               className={cn(
-                                "w-full justify-start text-left font-normal border-amazonGreen-200 hover:border-amazonGreen-500",
+                                "w-full justify-start text-left font-normal border-amazonGreen-200 hover:bg-amazonGreen-50 transition",
                                 !dateRange?.to && "text-muted-foreground",
                               )}
                             >
-                              <CalendarIcon className="mr-2 h-4 w-4" />
-                              {dateRange?.to ? (
-                                format(dateRange.to, "dd/MM/yyyy", { locale: es })
-                              ) : (
-                                <span>Seleccionar fecha</span>
-                              )}
+                              <CalendarIcon className="mr-2 h-4 w-4 text-amazonGreen-600" />
+                              {dateRange?.to ? format(dateRange.to, "dd/MM/yyyy", { locale: es }) : "Seleccionar"}
                             </Button>
                           </PopoverTrigger>
                           <PopoverContent className="w-auto p-0" align="start">
                             <Calendar
                               initialFocus
                               mode="range"
-                              defaultMonth={dateRange?.from}
                               selected={dateRange}
                               onSelect={setDateRange}
-                              numberOfMonths={2}
+                              numberOfMonths={1}
                               locale={es}
                               disabled={(date) => date < new Date()}
                             />
@@ -245,19 +248,19 @@ export function ReservationPageSection() {
                       </div>
                     </div>
 
-                    <div className="grid gap-4 md:grid-cols-2">
+                    <div className="grid gap-5 md:grid-cols-2">
                       <div className="space-y-2">
                         <Label htmlFor="guests" className="text-amazonGreen-700 font-medium">
-                          Número de Huéspedes *
+                          Huéspedes *
                         </Label>
-                        <Select onValueChange={setGuests} value={guests} required>
-                          <SelectTrigger id="guests" className="border-amazonGreen-200 focus:border-amazonGreen-500">
-                            <SelectValue placeholder="Selecciona" />
+                        <Select onValueChange={setGuests} value={guests}>
+                          <SelectTrigger className="border-amazonGreen-200 focus:ring-2 focus:ring-amazonGreen-300">
+                            <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
                             {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => (
                               <SelectItem key={num} value={String(num)}>
-                                {num} Huésped{num > 1 ? "es" : ""}
+                                {num} {num === 1 ? "Huésped" : "Huéspedes"}
                               </SelectItem>
                             ))}
                           </SelectContent>
@@ -265,20 +268,18 @@ export function ReservationPageSection() {
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="roomType" className="text-amazonGreen-700 font-medium">
-                          Tipo de Habitación
+                          Habitación
                         </Label>
                         <Select onValueChange={setRoomType} value={roomType}>
-                          <SelectTrigger id="roomType" className="border-amazonGreen-200 focus:border-amazonGreen-500">
-                            <SelectValue placeholder="Selecciona un tipo" />
+                          <SelectTrigger className="border-amazonGreen-200 focus:ring-2 focus:ring-amazonGreen-300">
+                            <SelectValue placeholder="Selecciona" />
                           </SelectTrigger>
                           <SelectContent>
                             {availableRoomTypes.map((type) => (
                               <SelectItem key={type.value} value={type.value}>
-                                <div className="flex flex-col">
-                                  <span>{type.label}</span>
-                                  <span className="text-xs text-muted-foreground">
-                                    {type.capacity} - {type.price}
-                                  </span>
+                                <div>
+                                  <span className="font-medium">{type.label}</span>
+                                  <span className="block text-xs text-muted-foreground">{type.capacity} • {type.price}</span>
                                 </div>
                               </SelectItem>
                             ))}
@@ -288,112 +289,98 @@ export function ReservationPageSection() {
                     </div>
                   </div>
 
-                  {/* Mensaje Adicional */}
+                  {/* Mensaje */}
                   <div className="space-y-2">
                     <Label htmlFor="message" className="text-amazonGreen-700 font-medium">
-                      Mensaje Adicional
+                      ¿Algo especial que debamos saber?
                     </Label>
                     <Textarea
                       id="message"
-                      placeholder="Cuéntanos sobre tus preferencias, ocasión especial, o cualquier solicitud especial..."
+                      placeholder="Ej. Celebramos un aniversario, necesitamos cuna, etc."
                       value={formData.message}
                       onChange={handleInputChange}
                       rows={3}
-                      className="border-amazonGreen-200 focus:border-amazonGreen-500 focus:ring-amazonGreen-500"
+                      className="border-amazonGreen-200 focus:ring-2 focus:ring-amazonGreen-300 focus:border-amazonGreen-500 transition"
                     />
                   </div>
 
-                  {/* Botón de Envío */}
+                  {/* Botón destacado */}
                   <Button
                     type="submit"
-                    className="w-full bg-green-600 hover:bg-green-700 text-white text-lg py-6 flex items-center justify-center gap-3 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                    className="w-full bg-gradient-to-r from-green-600 to-emerald-700 hover:from-green-700 hover:to-emerald-800 text-white text-lg py-6 font-semibold flex items-center justify-center gap-3 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
                   >
                     <WhatsappIcon className="h-6 w-6" />
-                    Enviar Reserva por WhatsApp
+                    Confirmar Reserva por WhatsApp
                   </Button>
-                  <p className="text-center text-sm text-amazonGreen-600 mt-2">
-                    Al enviar este formulario, serás redirigido a WhatsApp para completar tu reserva de manera rápida y
-                    personalizada.
+                  <p className="text-center text-sm text-gray-500 mt-2">
+                    Serás redirigido a WhatsApp. Respuesta en menos de 10 minutos.
                   </p>
                 </form>
               </CardContent>
             </Card>
 
-            {/* Información de Contacto y Mapa */}
+            {/* Información lateral */}
             <div className="space-y-8">
-              {/* Información de Contacto */}
-              <Card className="shadow-xl border-0 bg-white/80 backdrop-blur-sm">
-                <CardHeader>
-                  <CardTitle className="text-2xl font-bold text-amazonGreen-800 flex items-center gap-2">
-                    <Phone className="h-6 w-6" />
-                    Información de Contacto
+              {/* Contacto */}
+              <Card className="shadow-lg border border-amazonGreen-100 bg-white/90 backdrop-blur-sm rounded-2xl">
+                <CardHeader className="pb-4">
+                  <CardTitle className="text-xl font-bold text-amazonGreen-800 flex items-center gap-2.5">
+                    <Phone className="h-5 w-5" />
+                    ¿Preguntas? Estamos aquí
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-6">
-                  <div className="space-y-4">
-                    <div className="flex items-start gap-3 p-4 bg-amazonGreen-50 rounded-lg">
-                      <MapPin className="h-6 w-6 text-amazonGreen-700 mt-1 shrink-0" />
+                <CardContent className="space-y-4">
+                  {[
+                    { icon: MapPin, title: "Dirección", desc: "Macas, Morona Santiago", sub: "Corazón de la Amazonía ecuatoriana" },
+                    { icon: Phone, title: "WhatsApp", desc: "+593 98 351 7007", sub: "Disponible 24/7" },
+                    { icon: Mail, title: "Email", desc: "info@hotelaorquidea.com", sub: "" },
+                    { icon: Clock, title: "Horarios", desc: "Check-in: 12:00 • Check-out: 12:00", sub: "" },
+                  ].map((item, i) => (
+                    <div key={i} className="flex gap-3 p-3 bg-amazonGreen-50 rounded-xl">
+                      <div className="mt-0.5 text-amazonGreen-700">
+                        <item.icon className="h-5 w-5" />
+                      </div>
                       <div>
-                        <p className="font-semibold text-amazonGreen-800">Dirección</p>
-                        <p className="text-amazonGreen-600">Macas, Morona Santiago, Ecuador</p>
-                        <p className="text-sm text-amazonGreen-500">En el corazón de la Amazonía</p>
+                        <p className="font-medium text-amazonGreen-800">{item.title}</p>
+                        <p className="text-amazonGreen-600">{item.desc}</p>
+                        {item.sub && <p className="text-xs text-amazonGreen-500 mt-0.5">{item.sub}</p>}
                       </div>
                     </div>
-                    <div className="flex items-start gap-3 p-4 bg-amazonGreen-50 rounded-lg">
-                      <Phone className="h-6 w-6 text-amazonGreen-700 mt-1 shrink-0" />
-                      <div>
-                        <p className="font-semibold text-amazonGreen-800">WhatsApp</p>
-                        <p className="text-amazonGreen-600">+593 99 497 9605</p>
-                        <p className="text-sm text-amazonGreen-500">Disponible 24/7</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3 p-4 bg-amazonGreen-50 rounded-lg">
-                      <Mail className="h-6 w-6 text-amazonGreen-700 mt-1 shrink-0" />
-                      <div>
-                        <p className="font-semibold text-amazonGreen-800">Email</p>
-                        <p className="text-amazonGreen-600">info@hotelllaorquidea.com</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3 p-4 bg-amazonGreen-50 rounded-lg">
-                      <Clock className="h-6 w-6 text-amazonGreen-700 mt-1 shrink-0" />
-                      <div>
-                        <p className="font-semibold text-amazonGreen-800">Horarios</p>
-                        <p className="text-amazonGreen-600">Check-in: 15:00</p>
-                        <p className="text-amazonGreen-600">Check-out: 12:00</p>
-                      </div>
-                    </div>
-                  </div>
+                  ))}
                 </CardContent>
               </Card>
 
-              {/* Mapa de Google Maps */}
-              <Card className="shadow-xl border-0 bg-white/80 backdrop-blur-sm">
-                <CardHeader>
-                  <CardTitle className="text-2xl font-bold text-amazonGreen-800 flex items-center gap-2">
-                    <MapPin className="h-6 w-6" />
-                    Nuestra Ubicación
+              {/* Mapa */}
+              <Card className="shadow-lg border border-amazonGreen-100 bg-white/90 backdrop-blur-sm rounded-2xl">
+                <CardHeader className="pb-4">
+                  <CardTitle className="text-xl font-bold text-amazonGreen-800 flex items-center gap-2.5">
+                    <MapPin className="h-5 w-5" />
+                    Ubicación
                   </CardTitle>
-                  <CardDescription>Encuéntranos en el corazón de Macas, Morona Santiago</CardDescription>
+                  <CardDescription className="text-amazonGreen-600">
+                    Fácil acceso desde el centro de Macas
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="w-full h-80 rounded-lg overflow-hidden shadow-lg">
+                  <div className="w-full h-72 rounded-xl overflow-hidden shadow-md">
                     <iframe
                       src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1993.2976758738698!2d-78.11675039748383!3d-2.303129438858879!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d20f649acc32e7%3A0x1e462df3fce4c9c9!2sHotel%20La%20Orquidea!5e0!3m2!1ses-419!2sec!4v1758734962637!5m2!1ses-419!2sec"
-                      style={{ border: "0", width: "100%", height: "100%" }}  // ✅ objeto correcto
-                      allowFullScreen  // ✅ camelCase
+                      width="100%"
+                      height="100%"
+                      style={{ border: 0 }}
+                      allowFullScreen
                       loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"  // ✅ camelCase
-                      title="Ubicación del Hotel La Orquídea en Macas, Ecuador"
-                      className="transition-all duration-300 hover:brightness-110"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Hotel La Orquídea en Macas"
+                      className="transition-transform duration-300 hover:scale-[1.01]"
                     ></iframe>
-                    
                   </div>
                   <div className="mt-4 text-center">
                     <a
                       href="https://maps.app.goo.gl/U34QsXYCmpEWgUbY7"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-amazonGreen-700 hover:text-amazonGreen-800 font-medium transition-colors duration-300"
+                      className="inline-flex items-center gap-1.5 text-amazonGreen-700 hover:text-amazonGreen-900 font-medium"
                     >
                       <MapPin className="h-4 w-4" />
                       Ver en Google Maps

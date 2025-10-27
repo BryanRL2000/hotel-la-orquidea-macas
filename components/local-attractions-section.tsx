@@ -63,14 +63,11 @@ export function LocalAttractionsSection() {
     },
   ]
 
-  // Auto-play functionality
   useEffect(() => {
     if (!isAutoPlaying) return
-
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % attractions.length)
     }, 5000)
-
     return () => clearInterval(interval)
   }, [isAutoPlaying, attractions.length])
 
@@ -91,27 +88,23 @@ export function LocalAttractionsSection() {
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
-      case "Fácil":
-        return "bg-green-500"
-      case "Moderado":
-        return "bg-yellow-500"
-      case "Avanzado":
-        return "bg-red-500"
-      default:
-        return "bg-gray-500"
+      case "Fácil": return "bg-green-500"
+      case "Moderado": return "bg-yellow-500"
+      case "Avanzado": return "bg-red-500"
+      default: return "bg-gray-500"
     }
   }
 
   return (
     <section
       id="atracciones"
-      className="py-12 md:py-20 bg-gradient-to-br from-amazonGreen-50 to-white relative overflow-hidden"
+      className="py-10 md:py-16 lg:py-20 bg-gradient-to-br from-amazonGreen-50 to-white relative overflow-hidden"
     >
       {/* Background Decorations */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-20 left-20 w-32 h-32 bg-amazonGreen-300 rounded-full animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-24 h-24 bg-amazonGreen-400 rounded-full animate-bounce"></div>
-        <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-amazonGreen-500 rounded-full animate-ping"></div>
+      <div className="absolute inset-0 opacity-5 pointer-events-none">
+        <div className="absolute top-10 left-5 w-16 h-16 md:w-32 md:h-32 bg-amazonGreen-300 rounded-full animate-pulse"></div>
+        <div className="absolute bottom-10 right-5 w-12 h-12 md:w-24 md:h-24 bg-amazonGreen-400 rounded-full animate-bounce"></div>
+        <div className="absolute top-1/3 left-1/4 w-8 h-8 md:w-16 md:h-16 bg-amazonGreen-500 rounded-full animate-ping"></div>
       </div>
 
       <div className="container px-4 md:px-6 relative z-10">
@@ -121,22 +114,22 @@ export function LocalAttractionsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
         >
-          <Badge className="mb-4 bg-amazonGreen-100 text-amazonGreen-800 hover:bg-amazonGreen-200 transition-colors duration-300">
+          <Badge className="mb-4 bg-amazonGreen-100 text-amazonGreen-800 hover:bg-amazonGreen-200 transition-colors">
             Descubre Macas
           </Badge>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-amazonGreen-800 to-amazonGreen-600 bg-clip-text text-transparent">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-amazonGreen-800 to-amazonGreen-600 bg-clip-text text-transparent">
             Atracciones Locales
           </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl sm:max-w-3xl mx-auto px-2">
             Explora los tesoros naturales y culturales que rodean el Hotel La Orquídea en Macas, Morona Santiago.
           </p>
         </motion.div>
 
         {/* Carousel Container */}
         <div className="relative max-w-6xl mx-auto">
-          <div className="relative h-[500px] md:h-[600px] rounded-3xl overflow-hidden shadow-2xl">
+          <div className="relative h-[400px] sm:h-[450px] md:h-[500px] lg:h-[550px] rounded-2xl md:rounded-3xl overflow-hidden shadow-xl">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentSlide}
@@ -148,7 +141,6 @@ export function LocalAttractionsSection() {
               >
                 <Card className="h-full border-0 shadow-none bg-transparent">
                   <div className="relative h-full">
-                    {/* Background Image */}
                     <Image
                       src={attractions[currentSlide].image || "/placeholder.svg"}
                       alt={attractions[currentSlide].title}
@@ -156,42 +148,36 @@ export function LocalAttractionsSection() {
                       className="object-cover"
                       priority
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
 
-                    {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-
-                    {/* Content */}
-                    <CardContent className="absolute bottom-0 left-0 right-0 p-8 md:p-12 text-white">
-                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-end">
-                        {/* Left Column - Main Content */}
-                        <motion.div
-                          initial={{ opacity: 0, y: 30 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.6, delay: 0.2 }}
-                          className="space-y-4"
-                        >
-                          <div className="flex flex-wrap items-center gap-3 mb-4">
-                            <Badge className="bg-amazonGreen-600 hover:bg-amazonGreen-700 text-white">
+                    <CardContent className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 md:p-8 lg:p-10 text-white">
+                      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 items-end">
+                        {/* Main Content */}
+                        <div className="space-y-4">
+                          <div className="flex flex-wrap gap-2 mb-3">
+                            <Badge className="bg-amazonGreen-600 hover:bg-amazonGreen-700 text-white text-xs sm:text-sm">
                               {attractions[currentSlide].category}
                             </Badge>
-                            <Badge className={`${getDifficultyColor(attractions[currentSlide].difficulty)} text-white`}>
+                            <Badge className={`${getDifficultyColor(attractions[currentSlide].difficulty)} text-white text-xs sm:text-sm`}>
                               {attractions[currentSlide].difficulty}
                             </Badge>
                           </div>
 
-                          <h3 className="text-3xl md:text-4xl font-bold mb-4">{attractions[currentSlide].title}</h3>
+                          <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">
+                            {attractions[currentSlide].title}
+                          </h3>
 
-                          <p className="text-lg md:text-xl text-gray-200 leading-relaxed mb-6">
+                          <p className="text-sm sm:text-base text-gray-200 leading-relaxed">
                             {attractions[currentSlide].description}
                           </p>
 
-                          <div className="flex items-center gap-6 text-sm text-gray-300 mb-6">
-                            <div className="flex items-center gap-2">
-                              <Clock className="h-4 w-4" />
+                          <div className="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-gray-300 mt-4">
+                            <div className="flex items-center gap-1.5">
+                              <Clock className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                               <span>{attractions[currentSlide].duration}</span>
                             </div>
-                            <div className="flex items-center gap-2">
-                              <MapPin className="h-4 w-4" />
+                            <div className="flex items-center gap-1.5">
+                              <MapPin className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                               <span>Macas, Morona Santiago</span>
                             </div>
                           </div>
@@ -200,42 +186,38 @@ export function LocalAttractionsSection() {
                             href={attractions[currentSlide].link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
+                            whileHover={{ scale: 1.03 }}
+                            whileTap={{ scale: 0.98 }}
+                            className="inline-block mt-2"
                           >
                             <Button
                               size="lg"
-                              className="bg-gradient-to-r from-amazonGreen-600 to-amazonGreen-700 hover:from-amazonGreen-700 hover:to-amazonGreen-800 text-white px-8 py-4 text-lg font-semibold transition-all duration-300 shadow-xl group"
+                              className="bg-gradient-to-r from-amazonGreen-600 to-amazonGreen-700 hover:from-amazonGreen-700 hover:to-amazonGreen-800 text-white px-5 py-3 sm:px-6 sm:py-4 text-sm sm:text-base font-semibold shadow-lg group"
                             >
                               Explorar Destino
-                              <ExternalLink className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+                              <ExternalLink className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                             </Button>
                           </motion.a>
-                        </motion.div>
+                        </div>
 
-                        {/* Right Column - Highlights */}
-                        <motion.div
-                          initial={{ opacity: 0, x: 30 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.6, delay: 0.4 }}
-                          className="lg:text-right"
-                        >
-                          <h4 className="text-xl font-semibold mb-4 text-amazonGreen-200">Lo más destacado:</h4>
+                        {/* Highlights */}
+                        <div className="text-right lg:text-right">
+                          <h4 className="text-base sm:text-lg font-semibold mb-3 text-amazonGreen-200">Lo más destacado:</h4>
                           <div className="space-y-2">
                             {attractions[currentSlide].highlights.map((highlight, index) => (
                               <motion.div
                                 key={index}
-                                initial={{ opacity: 0, x: 20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
-                                className="flex items-center gap-2 lg:justify-end"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.6 + index * 0.1 }}
+                                className="flex items-center justify-end gap-2"
                               >
-                                <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
-                                <span className="text-gray-200">{highlight}</span>
+                                <Star className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-yellow-400 fill-yellow-400" />
+                                <span className="text-xs sm:text-sm text-gray-200">{highlight}</span>
                               </motion.div>
                             ))}
                           </div>
-                        </motion.div>
+                        </div>
                       </div>
                     </CardContent>
                   </div>
@@ -244,48 +226,53 @@ export function LocalAttractionsSection() {
             </AnimatePresence>
           </div>
 
-          {/* Navigation Arrows */}
+          {/* Navigation Arrows - Responsive Size */}
           <motion.button
+            aria-label="Anterior atracción"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={prevSlide}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white p-3 rounded-full transition-all duration-300 shadow-lg"
+            className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white p-2.5 sm:p-3 rounded-full transition-all shadow-lg z-20"
           >
-            <ChevronLeft className="h-6 w-6" />
+            <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
           </motion.button>
 
           <motion.button
+            aria-label="Siguiente atracción"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={nextSlide}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white p-3 rounded-full transition-all duration-300 shadow-lg"
+            className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white p-2.5 sm:p-3 rounded-full transition-all shadow-lg z-20"
           >
-            <ChevronRight className="h-6 w-6" />
+            <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
           </motion.button>
         </div>
 
         {/* Dots Indicator */}
-        <div className="flex justify-center mt-8 space-x-3">
+        <div className="flex justify-center mt-6 space-x-2">
           {attractions.map((_, index) => (
             <motion.button
               key={index}
-              whileHover={{ scale: 1.2 }}
+              aria-label={`Ir a diapositiva ${index + 1}`}
+              whileHover={{ scale: 1.15 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => goToSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentSlide ? "bg-amazonGreen-600 w-8" : "bg-gray-300 hover:bg-amazonGreen-400"
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                index === currentSlide ? "bg-amazonGreen-600 w-6" : "bg-gray-300 hover:bg-amazonGreen-400"
               }`}
             />
           ))}
         </div>
 
-        {/* Auto-play indicator */}
+        {/* Auto-play Toggle */}
         <div className="flex justify-center mt-4">
           <motion.button
             whileHover={{ scale: 1.05 }}
             onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-            className={`text-sm px-4 py-2 rounded-full transition-all duration-300 ${
-              isAutoPlaying ? "bg-amazonGreen-100 text-amazonGreen-800" : "bg-gray-100 text-gray-600"
+            className={`text-xs sm:text-sm px-3 py-1.5 sm:px-4 sm:py-2 rounded-full transition-colors ${
+              isAutoPlaying
+                ? "bg-amazonGreen-100 text-amazonGreen-800"
+                : "bg-gray-100 text-gray-600"
             }`}
           >
             {isAutoPlaying ? "⏸️ Pausar" : "▶️ Reproducir"} auto-deslizamiento
@@ -298,17 +285,19 @@ export function LocalAttractionsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
-          className="text-center mt-16"
+          className="text-center mt-12 md:mt-16"
         >
-          <div className="inline-block p-8 bg-gradient-to-r from-amazonGreen-100 to-amazonGreen-50 rounded-3xl shadow-xl transform hover:scale-105 transition-all duration-500">
-            <h3 className="text-2xl md:text-3xl font-bold text-amazonGreen-800 mb-4">¿Listo para la aventura?</h3>
-            <p className="text-amazonGreen-700 mb-6 max-w-2xl mx-auto">
+          <div className="inline-block p-5 sm:p-6 md:p-8 bg-gradient-to-r from-amazonGreen-100 to-amazonGreen-50 rounded-2xl md:rounded-3xl shadow-lg transform hover:scale-[1.02] transition-transform duration-500">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-amazonGreen-800 mb-3 md:mb-4">
+              ¿Listo para la aventura?
+            </h3>
+            <p className="text-amazonGreen-700 mb-5 max-w-md sm:max-w-xl mx-auto text-sm sm:text-base">
               Nuestro equipo puede ayudarte a organizar tours y excursiones a estos increíbles destinos.
             </p>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-amazonGreen-700 to-amazonGreen-800 hover:from-amazonGreen-800 hover:to-amazonGreen-900 text-white px-8 py-4 text-lg font-semibold transition-all duration-300 shadow-xl"
+                className="bg-gradient-to-r from-amazonGreen-700 to-amazonGreen-800 hover:from-amazonGreen-800 hover:to-amazonGreen-900 text-white px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-semibold shadow-lg"
               >
                 Consultar Tours Disponibles
               </Button>

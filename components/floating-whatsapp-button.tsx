@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { WhatsappIcon } from "./whatsapp-icon"
 
 export function FloatingWhatsappButton() {
-  const whatsappNumber = "+593994979605" // Número actualizado del hotel
+  const whatsappNumber = "+593983517007" // Número actualizado del hotel
   const whatsappMessage = encodeURIComponent("Hola, me gustaría consultar sobre una reserva en el Hotel La Orquídea.")
 
   return (
